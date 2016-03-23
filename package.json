@@ -1,0 +1,32 @@
+{
+  "name": "guard",
+  "version": "0.1.0",
+  "description": "",
+  "main": "lib/guard.js",
+  "scripts": {
+    "clean": "rimraf lib dist",
+    "build:lib": "babel src --out-dir lib",
+    "build:umd": "webpack src/guard.js dist/guard.js --config webpack.config.development.js",
+    "build:umd:min": "webpack src/guard.js dist/guard.min.js --config webpack.config.production.js",
+    "build": "npm run build:lib && npm run build:umd && npm run build:umd:min",
+    "preversion": "npm run clean && npm test",
+    "version": "npm run build",
+    "postversion": "git push && git push --tags && npm run clean",
+    "prepublish": "npm run clean && npm run build",
+    "test": "mocha --compilers js:babel-register"
+  },
+  "author": "Steven Wade <stevenwadejr@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.4.5",
+    "babel-core": "^6.4.5",
+    "babel-loader": "^6.2.1",
+    "babel-plugin-add-module-exports": "^0.1.2",
+    "babel-preset-es2015": "^6.3.13",
+    "rimraf": "^2.5.1",
+    "webpack": "^1.12.13"
+  },
+  "dependencies": {
+    "es6-promise": "^3.0.2"
+  }
+}
