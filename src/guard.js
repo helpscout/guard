@@ -1,4 +1,5 @@
 import {Promise} from "es6-promise";
+import Deferred from "./deferred";
 import * as utils from "./utils";
 
 export default class Guard {
@@ -10,13 +11,13 @@ export default class Guard {
      * Request permission to perform a specific action.
      *
      * @param {string} action the key/name of the action requested.
-     * @returns {Promise} A promise to either perform an action (`.then()`) or catch a failure (`.fail()`).
+     * @returns {Deferred} A deferred object to either perform an action (`.then()`) or catch a failure (`.fail()`).
      * @throws Will throw an error a responder response is not a promise or boolean.
      */
     ifICan(action) {
         let args = Array.prototype.slice.call(arguments, 1);
         let callbackStack = [];
-        let proceedPromise = new Promise(utils.noop);
+        let deferred = new Deferred();
 
         this.getStack(action).forEach(responder => {
             let context = responder.context || null;
@@ -38,13 +39,13 @@ export default class Guard {
 
         Promise.all(callbackStack)
             .then(() => {
-                Promise.resolve(proceedPromise);
+                deferred.resolve();
             })
             .catch(() => {
-                Promise.reject(proceedPromise);
+                deferred.reject();
             });
 
-        return proceedPromise;
+        return deferred;
     }
 
     /**
