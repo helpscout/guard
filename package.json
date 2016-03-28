@@ -16,6 +16,16 @@
     "test": "jasmine"
   },
   "author": "Steven Wade <stevenwadejr@gmail.com>",
+  "contributors": [
+    {
+      "name": "Brett Jones",
+      "email": "brettjonesdev@gmail.com"
+    },
+    {
+      "name": "Maxi Ferreira",
+      "email": "charca@gmail.com"
+    }
+  ],
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.4.5",
