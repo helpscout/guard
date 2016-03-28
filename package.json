@@ -13,7 +13,7 @@
     "version": "npm run build",
     "postversion": "git push && git push --tags && npm run clean",
     "prepublish": "npm run clean && npm run build",
-    "test": "mocha --compilers js:babel-register"
+    "test": "jasmine"
   },
   "author": "Steven Wade <stevenwadejr@gmail.com>",
   "license": "MIT",
@@ -23,7 +23,9 @@
     "babel-loader": "^6.2.1",
     "babel-plugin-add-module-exports": "^0.1.2",
     "babel-preset-es2015": "^6.3.13",
+    "jasmine": "^2.4.1",
     "rimraf": "^2.5.1",
+    "underscore": "^1.8.3",
     "webpack": "^1.12.13"
   },
   "dependencies": {
