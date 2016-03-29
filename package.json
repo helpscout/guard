@@ -1,7 +1,7 @@
 {
   "name": "guard",
   "version": "0.1.0",
-  "description": "",
+  "description": "Guard Promise library",
   "main": "lib/guard.js",
   "scripts": {
     "clean": "rimraf lib dist",
@@ -26,6 +26,10 @@
       "email": "charca@gmail.com"
     }
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/helpscout/guard.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.4.5",

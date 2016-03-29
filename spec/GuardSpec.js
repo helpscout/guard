@@ -123,12 +123,12 @@ describe('guard.* tests', function(){
 
     describe('ifICan()', function(){
 
-        it('should succeed with one responder that is not a promise', function(){
+        it('should succeed with one responder that is not a promise', function(done){
             guard.respondTo('save', function(){
                 return true;
             });
 
-            callAndSucceed();
+            callAndSucceed(done);
         });
 
 
@@ -301,20 +301,19 @@ describe('guard.* tests', function(){
 
         function callAndExpect(succeed, done) {
             var expectMethod = succeed === true ? expectSuccess : expectFail;
-
-            var then = jasmine.createSpy('then');
+            var _then = jasmine.createSpy('then');
             var _catch = jasmine.createSpy('catch');
-        
-            guard.ifICan('save').then().catch(_catch);
+
+            guard.ifICan('save').then(_then).catch(_catch);
+
             if ( done ) {
-                setTimeout(function () {
-                    expectMethod(then, _catch);
+                return setTimeout(function () {
+                    expectMethod(_then, _catch);
                     done();
-                }, 5);
-                return;
+                }, 100);
             }
-            
-            expectMethod(then, _catch);
+
+            expectMethod(_then, _catch);
         }
     });
 });
