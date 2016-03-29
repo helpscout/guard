@@ -132,154 +132,157 @@ describe('guard.* tests', function(){
         });
 
 
-        // it('should succeed with one responder that returns a promise from a closure', function(){
-        //     guard.respondTo('save', function(){
-        //         var deferred = new Deferred();
-        //         deferred.resolve();
-        //         return deferred.promise;
-        //     });
+        it('should succeed with one responder that returns a promise from a closure', function(done){
+            guard.respondTo('save', function(){
+                var deferred = new Deferred();
+                deferred.resolve();
+                return deferred.promise;
+            });
 
-        //     callAndSucceed();
-        // });
+            callAndSucceed(done);
+        });
 
-        // it('should succeed with one responder that returns a delayed promise from a closure', function(done){
-        //     guard.respondTo('save', function(){
-        //         var deferred = new Deferred();
+        it('should succeed with one responder that returns a delayed promise from a closure', function(done){
+            guard.respondTo('save', function(){
+                var deferred = new Deferred();
 
-        //         setTimeout(function(){
-        //             deferred.resolve();
-        //         }, 1);
+                setTimeout(function(){
+                    deferred.resolve();
+                }, 1);
 
-        //         return deferred.promise;
-        //     });
+                return deferred.promise;
+            });
 
-        //     callAndSucceed(done);
-        // });
+            callAndSucceed(done);
+        });
 
-        // it('should fail when one responder says no', function(){
-        //     guard.respondTo('save', function() {
-        //         return false;
-        //     });
+        it('should fail when one responder says no', function(done){
+            guard.respondTo('save', function() {
+                return false;
+            });
 
-        //     callAndFail();
-        // });
+            callAndFail(done);
+        });
 
-        // it('should fail when one responder promise says no', function(){
-        //     guard.respondTo('save', function() {
-        //         var deferred = new Deferred().reject();
-        //         return deferred.promise;
-        //     });
+        it('should fail when one responder promise says no', function(done){
+            guard.respondTo('save', function() {
+                var deferred = new Deferred();
+                deferred.reject();
+                return deferred.promise;
+            });
 
-        //     callAndFail();
-        // });
+            callAndFail(done);
+        });
 
-        // it('should succeed when multiple responders say yes', function(){
-        //     guard.respondTo('save', function(){
-        //         return true;
-        //     });
+        it('should succeed when multiple responders say yes', function(done){
+            guard.respondTo('save', function(){
+                return true;
+            });
 
-        //     guard.respondTo('save', function(){
-        //         return true;
-        //     });
+            guard.respondTo('save', function(){
+                return true;
+            });
 
-        //     guard.respondTo('save', function(){
-        //         return true;
-        //     });
+            guard.respondTo('save', function(){
+                return true;
+            });
 
-        //     callAndSucceed();
-        // });
+            callAndSucceed(done);
+        });
 
-        // it('should fail when 1/3 responders says no', function(){
-        //     guard.respondTo('save', function(){
-        //         return true;
-        //     });
+        it('should fail when 1/3 responders says no', function(done){
+            guard.respondTo('save', function(){
+                return true;
+            });
 
-        //     guard.respondTo('save', function(){
-        //         return false;
-        //     });
+            guard.respondTo('save', function(){
+                return false;
+            });
 
-        //     guard.respondTo('save', function(){
-        //         return true;
-        //     });
+            guard.respondTo('save', function(){
+                return true;
+            });
 
-        //     callAndFail();
-        // });
+            callAndFail(done);
+        });
 
-        // it('should succeed when multiple responders with delayed promises say yes', function(done){
-        //     guard.respondTo('save', function(){
-        //         var deferred = new Deferred();
+        it('should succeed when multiple responders with delayed promises say yes', function(done){
+            guard.respondTo('save', function(){
+                var deferred = new Deferred();
 
-        //         setTimeout(function(){
-        //             deferred.resolve();
-        //         }, 1);
+                setTimeout(function(){
+                    deferred.resolve();
+                }, 1);
 
-        //         return deferred.promise;
-        //     });
+                return deferred.promise;
+            });
 
-        //     guard.respondTo('save', function(){
-        //         var deferred = new Deferred();
+            guard.respondTo('save', function(){
+                var deferred = new Deferred();
 
-        //         setTimeout(function(){
-        //             deferred.resolve();
-        //         }, 1);
+                setTimeout(function(){
+                    deferred.resolve();
+                }, 1);
 
-        //         return deferred.promise;
-        //     });
+                return deferred.promise;
+            });
 
-        //     guard.respondTo('save', function(){
-        //         var deferred = new Deferred();
+            guard.respondTo('save', function(){
+                var deferred = new Deferred();
 
-        //         setTimeout(function(){
-        //             deferred.resolve();
-        //         }, 1);
+                setTimeout(function(){
+                    deferred.resolve();
+                }, 1);
 
-        //         return deferred.promise;
-        //     });
+                return deferred.promise;
+            });
 
-        //     callAndSucceed(done);
-        // });
+            callAndSucceed(done);
+        });
 
-        // it('should fail when one of multiple responders returns a rejected promise', function(done){
-        //     guard.respondTo('save', function(){
-        //         var deferred = new Deferred();
+        it('should fail when one of multiple responders returns a rejected promise', function(done){
+            guard.respondTo('save', function(){
+                var deferred = new Deferred();
 
-        //         setTimeout(function(){
-        //             deferred.resolve();
-        //         }, 1);
+                setTimeout(function(){
+                    deferred.resolve();
+                }, 1);
 
-        //         return deferred.promise;
-        //     });
+                return deferred.promise;
+            });
 
-        //     guard.respondTo('save', function(){
-        //         var deferred = new Deferred();
+            guard.respondTo('save', function(){
+                var deferred = new Deferred();
 
-        //         setTimeout(function(){
-        //             deferred.reject();
-        //         }, 1);
+                setTimeout(function(){
+                    deferred.reject();
+                }, 1);
 
-        //         return deferred.promise;
-        //     });
+                return deferred.promise;
+            });
 
-        //     guard.respondTo('save', function(){
-        //         return new Deferred().resolve().promise;
-        //     });
+            guard.respondTo('save', function(){
+                var deferred = new Deferred();
+                deferred.resolve();
+                return deferred.promise;
+            });
 
-        //     callAndFail(done);
-        // });
+            callAndFail(done);
+        });
 
-        // it('should pass when a single responder says yes from a scoped method', function(done){
-        //     var obj = {
-        //         response: true,
+        it('should pass when a single responder says yes from a scoped method', function(done){
+            var obj = {
+                response: true,
 
-        //         check: function() {
-        //             return this.response;
-        //         }
-        //     };
+                check: function() {
+                    return this.response;
+                }
+            };
 
-        //     guard.respondTo('save', obj.check, obj);
+            guard.respondTo('save', obj.check, obj);
 
-        //     callAndSucceed(done);
-        // });
+            callAndSucceed(done);
+        });
 
         function expectFail(thenCallback, catchCallback) {
             expect(thenCallback).not.toHaveBeenCalled();
