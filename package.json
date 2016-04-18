@@ -9,7 +9,7 @@
     "build:umd": "webpack src/guard.js dist/guard.js --config webpack.config.development.js",
     "build:umd:min": "webpack src/guard.js dist/guard.min.js --config webpack.config.production.js",
     "build": "npm run build:lib && npm run build:umd && npm run build:umd:min",
-    "preversion": "npm run clean && npm run test",
+    "preversion": "npm run clean && npm run build && npm run test",
     "version": "npm run build",
     "postversion": "git push && git push --tags && npm run clean",
     "prepublish": "npm run clean && npm run build",
