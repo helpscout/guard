@@ -9,13 +9,6 @@ Guard allows asynchronous, anonymous coupling of components. Components wanting 
 ### NPM
 `npm install @helpscout/guard`
 
-### CDN (npmcdn.com)
-
-```javascript
-https://npmcdn.com/helpscout/guard/dist/guard.js
-https://npmcdn.com/helpscout/guard/dist/guard.min.js
-```
-
 ## Usage
 
 ### CommonJS
