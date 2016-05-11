@@ -32,9 +32,13 @@ An online forum thread editor wants to save a block of text in its WYSIWYG edito
 
 ```javascript
 
-guard.ifICan('save').then(function(){
-    // save the text
-});
+guard.ifICan('save')
+	.then(function(){
+    	// save the text
+	})
+	.catch(function(){
+		// handle the error
+	});
 ```
 
 Now, before saving, there may be some steps you need to check first. Was the "subject" field filled out? Were any required fields left blank?
